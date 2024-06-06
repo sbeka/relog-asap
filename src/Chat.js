@@ -67,7 +67,8 @@ const Chat = () => {
 	const [messages, setMessages] = useState([
 		{
 			id: uuidv4(),
-			text: 'Привет человек!',
+			text: 'Добрый день! Я аналитический ассистент от компании Relog. Моя цель - отвечать на ваши аналитические вопросы.\n' +
+				'Я нахожусь в разработке и мой функционал строго ограничен вопросами, которые имеют отношение к данным.',
 			isOwn: false,
 			time: new Date().toLocaleTimeString().slice(0, 5),
 			author: 'AI',
