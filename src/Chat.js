@@ -96,20 +96,27 @@ const Chat = () => {
 
 			setLoading(() => true);
 
-			const res = await axios.post(URL, {
-				"input": {
-					"question": newMessage,
-					"is_relevant": "",
-					"answer": "",
-					"empty_result": "",
-					"intermediate_steps": []
-				},
-				"config": {},
-				"kwargs": {}
-			});
+			let res;
+
+			try {
+				res = await axios.post(URL, {
+					"input": {
+						"question": newMessage,
+						"is_relevant": "",
+						"answer": "",
+						"empty_result": "",
+						"intermediate_steps": []
+					},
+					"config": {},
+					"kwargs": {}
+				});
+			} catch (e) {
+				console.error(e);
+			}
+
+			setLoading(() => false);
 
 			if (res) {
-				setLoading(() => false);
 				setNewMessage(() => '');
 
 				const { sql_query, sql_result, answer } = res.data?.output || {};
