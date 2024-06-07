@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
-const URL = process.env.REACT_APP_API_URL ?? 'http://localhost:8012/copilot/invoke';
+const URL = process.env.REACT_APP_API_URL ?? 'http://localhost:8012/copilot/invoke1';
 
 console.log('🐒 URL', URL);
 

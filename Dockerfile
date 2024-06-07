@@ -7,7 +7,7 @@ WORKDIR /app
 # Clone the repository
 RUN git clone https://github.com/sbeka/relog-asap .
 
-ENV REACT_APP_API_URL=http://localhost:8012/copilot/invoke
+ENV REACT_APP_API_URL=http://localhost:8012/copilot/invoke2
 
 # Install dependencies
 RUN npm install
