@@ -3,9 +3,14 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
-const URL = process.env.REACT_APP_API_URL ?? 'http://localhost:8012/copilot/invoke';
-
-console.log('🐒 URL', URL);
+const URL = () => {
+	switch (window.location.hostname) {
+		case 'copilot.relog.kz':
+			return 'https://copilot.relog.kz/copilot/invoke';
+		default:
+			return 'http://localhost:8012/copilot/invoke';
+	}
+};
 
 const ChatContainer = styled.div`
 	width: 800px;
@@ -99,7 +104,7 @@ const Chat = () => {
 			let res;
 
 			try {
-				res = await axios.post(URL, {
+				res = await axios.post(URL(), {
 					"input": {
 						"question": newMessage,
 						"is_relevant": "",
