@@ -45,7 +45,7 @@ const MessageButton = styled.button`
   cursor: pointer;
 `;
 
-const Message = styled.div`
+const StyledMessage = styled.div`
   margin-bottom: 10px;
   display: flex;
   flex-direction: ${props => props.isOwn ? 'row-reverse' : 'row'};
@@ -181,7 +181,7 @@ const Chat = () => {
 		<ChatContainer>
 			<MessagesContainer>
 				{messages.map((msg) => (
-					<Message key={msg.id} isOwn={msg.isOwn}>
+					<StyledMessage key={msg.id} isOwn={msg.isOwn}>
 						<img
 							src={msg.avatar}
 							alt={msg.author}
@@ -191,7 +191,7 @@ const Chat = () => {
 							<div dangerouslySetInnerHTML={{__html: msg.text}}></div>
 							<div style={{fontSize: '0.8em', marginTop: '5px'}}>{msg.time}</div>
 						</MessageContent>
-					</Message>
+					</StyledMessage>
 				))}
 				<div ref={messagesEndRef} />
 			</MessagesContainer>
