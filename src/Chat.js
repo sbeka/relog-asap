@@ -3,7 +3,8 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
-const URL = process?.env?.COPILOT_BACKEND_ENDPOINT ?? '';
+const URL = process.env.REACT_APP_API_URL ?? 'http://localhost:8012/copilot/invoke';
+
 console.log('🐒 URL', URL);
 
 const ChatContainer = styled.div`
@@ -195,7 +196,7 @@ const Chat = () => {
 				<div ref={messagesEndRef} />
 			</MessagesContainer>
 			<MessageInputContainer>
-			<MessageInput
+				<MessageInput
 					type="text"
 					value={newMessage}
 					onChange={(e) => setNewMessage(e.target.value)}
