@@ -3,5 +3,7 @@ version: '3.8'
 services:
   react-app:
     build: .
+    environment:
+      COPILOT_BACKEND_ENDPOINT: 'http://localhost:8012/copilot/invokee'
     ports:
       - '3000:3000'

@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
 
+const URL = process?.env?.COPILOT_BACKEND_ENDPOINT ?? '';
+console.log('🐒 URL', URL);
+
 const ChatContainer = styled.div`
 	width: 800px;
 	height: calc(100vh - 5px);
@@ -92,7 +95,7 @@ const Chat = () => {
 
 			setLoading(() => true);
 
-			const res = await axios.post('http://localhost:8012/copilot/invoke', {
+			const res = await axios.post(URL, {
 				"input": {
 					"question": newMessage,
 					"is_relevant": "",
