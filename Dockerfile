@@ -12,9 +12,6 @@ ENV REACT_APP_API_URL=https://copilot-api.relog.kz/copilot/invoke
 # Install dependencies
 RUN npm install
 
-# Build the app
-RUN npm run build
-
 # Expose the port the app runs on
 EXPOSE 3000
 
