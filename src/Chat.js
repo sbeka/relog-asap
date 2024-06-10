@@ -13,8 +13,8 @@ const URL = () => {
 };
 
 const ChatContainer = styled.div`
-	width: 800px;
-	height: calc(100vh - 5px);
+	max-width: 800px;
+	height: calc(100vh - 80px);
 	margin: 0 auto;
 	border: 1px solid #ccc;
 	display: flex;
