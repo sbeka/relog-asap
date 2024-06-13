@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 const URL = () => {
 	switch (window.location.hostname) {
 		case 'copilot.relog.kz':
-			return 'https://copilot.relog.kz/copilot/invoke';
+			return 'https://copilot-api.relog.kz/copilot/invoke';
 		default:
 			return 'http://localhost:8012/copilot/invoke';
 	}
