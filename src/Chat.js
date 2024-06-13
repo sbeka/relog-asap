@@ -205,6 +205,29 @@ const Chat = () => {
 						</MessageContent>
 					</StyledMessage>
 				))}
+
+				{loading ? (
+					<StyledMessage isOwn={false} style={{backgroundColor: '#fff'}}>
+						<img
+							src="./robot-icon.png"
+							alt="AI"
+							style={{borderRadius: '50%', margin: '0 10px', width: '50px', height: '50px'}}
+							title="Я думаю..."
+						/>
+						<MessageContent isOwn={false} style={{padding: 0}}>
+							<div style={{
+								display: 'flex',
+								alignItems: 'center',
+								height: '100%',
+								backgroundColor: '#fff',
+								paddingLeft: '5px'
+							}}>
+								<img width="50" src="./loader-2.gif" alt="Печатает..." title="Я думаю..." />
+							</div>
+						</MessageContent>
+					</StyledMessage>
+				) : ''}
+
 				<div ref={messagesEndRef} />
 			</MessagesContainer>
 			<MessageInputContainer>
