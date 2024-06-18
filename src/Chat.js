@@ -127,7 +127,7 @@ const Chat = () => {
 				const { sql_query, sql_result, answer } = res.data?.output || {};
 				const aiMessagesObj = [];
 
-				if (sql_query) {
+				/*if (sql_query) {
 					aiMessagesObj.push({
 						id: uuidv4(),
 						text: `<div><strong>SQL запрос:</strong>: ${sql_query}</div>`,
@@ -147,7 +147,7 @@ const Chat = () => {
 						author: 'AI',
 						avatar: './robot-icon.png',
 					});
-				}
+				}*/
 
 				if (answer) {
 					aiMessagesObj.push({
