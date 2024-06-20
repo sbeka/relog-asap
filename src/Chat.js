@@ -1,74 +1,25 @@
 import React, {useEffect, useRef, useState} from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+import {
+	ChatContainer,
+	LoaderWrap,
+	MessageButton,
+	MessageContent,
+	MessageInput,
+	MessageInputContainer,
+	MessagesContainer,
+	StyledMessage
+} from "./Chat.styles";
 
 const URL = () => {
 	switch (window.location.hostname) {
 		case 'copilot.relog.kz':
 			return 'https://copilot-api.relog.kz/copilot/invoke';
 		default:
-			return 'http://localhost:8012/copilot/invoke';
+			return 'https://copilot-api.relog.kz/copilot/invoke';
 	}
 };
-
-const ChatContainer = styled.div`
-	max-width: 800px;
-	height: calc(100vh - 80px);
-	margin: 0 auto;
-	border: 1px solid #ccc;
-	display: flex;
-	flex-direction: column;
-`;
-
-const MessagesContainer = styled.div`
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
-`;
-
-const MessageInputContainer = styled.div`
-  padding: 10px;
-  border-top: 1px solid #ccc;
-  display: flex;
-`;
-
-const MessageInput = styled.input`
-  flex: 1;
-  padding: 10px;
-  border-radius: 5px;
-  margin-right: 10px;
-  border: 1px solid #ccc;
-`;
-
-const MessageButton = styled.button`
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-`;
-
-const StyledMessage = styled.div`
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: ${props => props.isOwn ? 'row-reverse' : 'row'};
-`;
-
-const MessageContent = styled.div`
-  background-color: ${props => props.isOwn ? '#007bff' : '#f1f1f1'};
-  color: ${props => props.isOwn ? 'white' : 'black'};
-  padding: 10px;
-  border-radius: 5px;
-  max-width: 60%;
-  white-space: pre-line;
-`;
-
-const LoaderWrap = styled.div`
-	display: flex;
-	gap: 10px;
-`;
 
 const Chat = () => {
 	const inputRef = useRef(null);
@@ -106,6 +57,7 @@ const Chat = () => {
 			try {
 				res = await axios.post(URL(), {
 					"input": {
+						"sessionId": sessionStorage.getItem('chatAiSession'),
 						"question": newMessage,
 						"is_relevant": "",
 						"answer": "",
@@ -180,6 +132,7 @@ const Chat = () => {
 		if (inputRef.current) {
 			inputRef.current.focus();
 		}
+		sessionStorage.setItem('chatAiSession', uuidv4());
 	}, []);
 
 	useEffect(() => {
