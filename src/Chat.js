@@ -17,7 +17,7 @@ const URL = () => {
 		case 'copilot.relog.kz':
 			return 'https://copilot-api.relog.kz/copilot/invoke';
 		default:
-			return 'https://copilot-api.relog.kz/copilot/invoke';
+			return 'http://localhost:8012/copilot/invoke';
 	}
 };
 
