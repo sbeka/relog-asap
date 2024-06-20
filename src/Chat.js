@@ -57,7 +57,7 @@ const Chat = () => {
 			try {
 				res = await axios.post(URL(), {
 					"input": {
-						"sessionId": sessionStorage.getItem('chatAiSession'),
+						"session_id": sessionStorage.getItem('chatAiSession'),
 						"question": newMessage,
 						"is_relevant": "",
 						"answer": "",
