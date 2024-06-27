@@ -17,7 +17,7 @@ const Chat = () => {
 		),
 	]);
 	const [loading, setLoading] = useState(false);
-	const [newMessage, setNewMessage] = useState('Список курьеров');
+	const [newMessage, setNewMessage] = useState('');
 
 
 	useEffect(() => {
