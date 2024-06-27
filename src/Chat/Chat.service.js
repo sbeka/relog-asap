@@ -8,18 +8,18 @@ class ChatService {
 			id: uuidv4(),
 			text,
 			isOwn,
-			time: new Date().toLocaleTimeString().slice(0, 4),
+			time: new Date().toLocaleTimeString().slice(0, 5),
 			author,
 			avatar,
 		};
 	}
 
-	createNewMessageFromBot(text) {
-		return this.createNewMessageObj(text, 'AI', './bot.svg', false);
+	createNewMessageFromBot(text, avatar = './images/bot-waiting.svg') {
+		return this.createNewMessageObj(text, 'AI', avatar, false);
 	}
 
 	createNewMessageFromMe(text) {
-		return this.createNewMessageObj(text, 'Ты', './user-icon.png', true);
+		return this.createNewMessageObj(text, 'Ты', './images/relog-logo.jpg', true);
 	}
 
 	async sendRequestToBot(question) {

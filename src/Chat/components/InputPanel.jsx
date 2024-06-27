@@ -15,18 +15,16 @@ const InputPanel = ({
 				   value={newMessage}
 				   onChange={onChangeHandle}
 				   onKeyPress={onKeyPressHandle}
-				   placeholder="Введите текст..."
+				   placeholder="Задайте вопрос..."
 				   disabled={loading}
 				   ref={inputRef}
 			/>
-			<button className="message-button" onClick={onClickButtonHandle} disabled={loading}>
-				{loading ? (
-					<div className="loader-wrap">
-						<img style={{width: '16px'}} src="./loader.gif" alt="loading"/>
-						Подождите...
-					</div>
-				) : 'Отправить'}
-			</button>
+			<img
+				className="message-button"
+				onClick={onClickButtonHandle}
+				src={newMessage ? './images/button-active.svg' : './images/button-inactive.svg'}
+				alt="button"
+			/>
 		</>
 	);
 };

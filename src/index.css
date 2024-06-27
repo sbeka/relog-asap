@@ -1,4 +1,12 @@
+@font-face {
+  font-family: 'SF-Pro';
+  src: url('./assets/fonts/SF-Pro-Text-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   margin: 0;
   background: #F1EDF5;
+  font-family: 'SF-Pro', sans-serif;
 }

@@ -10,11 +10,14 @@ const Chat = () => {
 	const inputRef = useRef(null);
 	const messagesEndRef = useRef(null);
 	const [messages, setMessages] = useState([
-		ChatInstance.createNewMessageFromBot('Добрый день! Я аналитический ассистент от компании Relog. Моя цель - отвечать на ваши аналитические вопросы.\n' +
-			'Я нахожусь в разработке и мой функционал строго ограничен вопросами, которые имеют отношение к данным.'),
+		ChatInstance.createNewMessageFromBot(
+			'Добрый день! Я аналитический ассистент компании Relog. Моя задача — отвечать на ваши вопросы, ' +
+			'связанные с данными. Учтите, что я пока в стадии разработки и мой функционал ограничен.',
+			'./images/bot-welcome.svg'
+		),
 	]);
 	const [loading, setLoading] = useState(false);
-	const [newMessage, setNewMessage] = useState('');
+	const [newMessage, setNewMessage] = useState('Список курьеров');
 
 
 	useEffect(() => {
@@ -36,11 +39,16 @@ const Chat = () => {
 
 
 	const handleSendMessage = async () => {
+		if (loading) {
+			return;
+		}
+
 		if (newMessage.trim()) {
 			const newMessageObj = ChatInstance.createNewMessageFromMe(newMessage);
-			setMessages((prevMessages) => [...prevMessages, newMessageObj]);
 
+			setMessages((prevMessages) => [...prevMessages, newMessageObj]);
 			setLoading(() => true);
+			setNewMessage(() => '');
 
 			let res;
 
@@ -53,8 +61,6 @@ const Chat = () => {
 			setLoading(() => false);
 
 			if (res) {
-				setNewMessage(() => '');
-
 				const { answer } = res.data?.output || {};
 				const aiMessagesObj = [];
 
@@ -84,7 +90,7 @@ const Chat = () => {
 	return (
 		<div className="chat-container">
 			<div className="messages-container">
-				{messages.map((msg) => <MessageCard msg={msg} />)}
+				{messages.map((msg) => <MessageCard key={msg.id} msg={msg} />)}
 				{loading && <LoadingMessageCard />}
 				<div ref={messagesEndRef} />
 			</div>
