@@ -1,11 +1,13 @@
 import './App.css';
 import Chat from "../Chat/Chat";
+import React from "react";
 
 function App() {
 
     return (
         <div className="App">
-            <Chat />
+            <img className="logo-relog" src="./images/logo-relog.png" alt="relog"/>
+            <Chat/>
         </div>
     );
 }
