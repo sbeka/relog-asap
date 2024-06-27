@@ -17,7 +17,7 @@ const Chat = () => {
 		),
 	]);
 	const [loading, setLoading] = useState(false);
-	const [newMessage, setNewMessage] = useState('Какие водители сделали больше всего заказов?');
+	const [newMessage, setNewMessage] = useState('');
 	const [chartResponse, setChartResponse] = useState(false);
 
 
