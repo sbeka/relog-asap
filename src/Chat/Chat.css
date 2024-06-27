@@ -58,10 +58,16 @@ input.message-input:focus-visible {
     outline: none;
 }
 
-.message-button {
+.buttons {
     position: absolute;
     right: 30px;
     top: 12px;
+    display: flex;
+    gap: 12px;
+}
+
+.buttons .message-button,
+.buttons .chart-button {
     cursor: pointer;
 }
 
@@ -69,6 +75,10 @@ input.message-input:focus-visible {
     margin-bottom: 40px;
     display: flex;
     flex-direction: row;
+}
+
+.message:last-child {
+    margin-bottom: 0;
 }
 
 .message .avatar {

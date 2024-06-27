@@ -17,7 +17,8 @@ const Chat = () => {
 		),
 	]);
 	const [loading, setLoading] = useState(false);
-	const [newMessage, setNewMessage] = useState('');
+	const [newMessage, setNewMessage] = useState('Какие водители сделали больше всего заказов?');
+	const [chartResponse, setChartResponse] = useState(false);
 
 
 	useEffect(() => {
@@ -53,7 +54,7 @@ const Chat = () => {
 			let res;
 
 			try {
-				res = await ChatInstance.sendRequestToBot(newMessage);
+				res = await ChatInstance.sendRequestToBot(newMessage, chartResponse);
 			} catch (e) {
 				console.error(e);
 			}
@@ -61,12 +62,22 @@ const Chat = () => {
 			setLoading(() => false);
 
 			if (res) {
-				const { answer } = res.data?.output || {};
+				const { answer, visualization_need, visualization_config } = res.data?.output || {};
 				const aiMessagesObj = [];
 
 				if (answer) {
+					let visData = {};
+
+					if (visualization_need === 'yes' && visualization_config) {
+						visData = visualization_config;
+					}
+
 					aiMessagesObj.push(
-						ChatInstance.createNewMessageFromBot(`<div><strong>Ответ</strong>: ${answer}</div>`)
+						ChatInstance.createNewMessageFromBot(
+							`<div><strong>Ответ</strong>: ${answer}</div>`,
+							'./images/bot-waiting.svg',
+							visData,
+						)
 					);
 				}
 
@@ -102,6 +113,8 @@ const Chat = () => {
 					onKeyPressHandle={handleKeyPress}
 					onClickButtonHandle={handleSendMessage}
 					inputRef={inputRef}
+					chartResponse={chartResponse}
+					setChartResponse={setChartResponse}
 				/>
 			</div>
 		</div>

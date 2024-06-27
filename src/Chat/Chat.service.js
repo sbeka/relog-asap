@@ -3,7 +3,7 @@ import axios from "axios";
 
 class ChatService {
 
-	createNewMessageObj(text, author, avatar, isOwn = false, ) {
+	createNewMessageObj(text, author, avatar, isOwn = false, visualization_config = {}) {
 		return {
 			id: uuidv4(),
 			text,
@@ -11,20 +11,22 @@ class ChatService {
 			time: new Date().toLocaleTimeString().slice(0, 5),
 			author,
 			avatar,
+			visualization_config,
 		};
 	}
 
-	createNewMessageFromBot(text, avatar = './images/bot-waiting.svg') {
-		return this.createNewMessageObj(text, 'AI', avatar, false);
+	createNewMessageFromBot(text, avatar = './images/bot-waiting.svg', visualization_config = {}) {
+		return this.createNewMessageObj(text, 'AI', avatar, false, visualization_config);
 	}
 
 	createNewMessageFromMe(text) {
 		return this.createNewMessageObj(text, 'Ты', './images/relog-logo.jpg', true);
 	}
 
-	async sendRequestToBot(question) {
+	async sendRequestToBot(question, chartResponse = false) {
 		return await axios.post(this._getUrl(), {
 			input: {
+				visualization_need: chartResponse ? 'yes' : '',
 				session_id: sessionStorage.getItem('chatAiSession'),
 				question,
 				is_relevant: "",

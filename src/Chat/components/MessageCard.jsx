@@ -1,4 +1,5 @@
 import React from 'react';
+import MessageChart from "./MessageChart";
 
 const MessageCard = ({ msg }) => {
 	return (
@@ -8,6 +9,7 @@ const MessageCard = ({ msg }) => {
 			</div>
 			<div className={`message-content ${msg.isOwn ? 'isOwn' : ''}`}>
 				<div dangerouslySetInnerHTML={{__html: msg.text}}></div>
+				<MessageChart config={msg.visualization_config} />
 				<div className="message-time">{msg.time}</div>
 			</div>
 		</div>

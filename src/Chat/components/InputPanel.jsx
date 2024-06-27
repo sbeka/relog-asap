@@ -6,7 +6,9 @@ const InputPanel = ({
 	onChangeHandle,
 	onKeyPressHandle,
 	onClickButtonHandle,
-	inputRef
+	inputRef,
+	chartResponse,
+	setChartResponse,
 }) => {
 	return (
 		<>
@@ -19,12 +21,22 @@ const InputPanel = ({
 				   disabled={loading}
 				   ref={inputRef}
 			/>
-			<img
-				className="message-button"
-				onClick={onClickButtonHandle}
-				src={newMessage ? './images/button-active.svg' : './images/button-inactive.svg'}
-				alt="button"
-			/>
+			<div className="buttons">
+				<img
+					className="chart-button"
+					onClick={() => setChartResponse(!chartResponse)}
+					src={chartResponse ? './images/chart-on.svg' : './images/chart-off.svg'}
+					alt="button"
+					title={chartResponse ? 'Отключить график' : 'Включить график'}
+				/>
+				<img
+					className="message-button"
+					onClick={onClickButtonHandle}
+					src={newMessage ? './images/button-active.svg' : './images/button-inactive.svg'}
+					alt="button"
+					title="Отправить"
+				/>
+			</div>
 		</>
 	);
 };
